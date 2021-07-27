@@ -1,7 +1,7 @@
 import React, {useReducer} from 'react'
+import { FirebaseContext } from "./firebaseContext";
+import { firebaseReducer } from "./firebaseReducer";
 import axios from 'axios'
-import { FirebaseContext } from "./firebaseContext"
-import { firebaseReducer } from "./firebaseReducer"
 import { REMOVE_NOTE, SHOW_LOADER } from "../types";
 
 const url = process.env.REACT_APP_DB_URL
@@ -11,11 +11,12 @@ export const FirebaseState = ({children}) => {
     notes: [],
     loading: false
   }
+
   const [state, dispatch] = useReducer(firebaseReducer, initialState)
 
   const showLoader = () => dispatch({type: SHOW_LOADER})
 
-  const fetchNotes = async () =>{
+  const fetchNotes = async () => {
     showLoader()
     const res = await axios.get(`${url}/notes.json`)
 
@@ -24,15 +25,16 @@ export const FirebaseState = ({children}) => {
 
   const addNote = async title => {
     const note = {
-      title, date: new Date().toJSON()
+      title,
+      data: new Date().toJSON()
     }
 
-    const res= await axios.post(`${url}/notes.json`,note)
+    const res = await axios.post(`${url}/notes.json`,note)
 
     console.log('addNote', res.data)
   }
 
-  const removeNote = async id =>{
+  const removeNote = async id => {
     await axios.delete(`${url}/notes/${id}.json`)
 
     dispatch({
@@ -41,9 +43,12 @@ export const FirebaseState = ({children}) => {
     })
   }
 
-  return(
+  return (
     <FirebaseContext.Provider value={{
-      showLoader, addNote,removeNote, fetchNotes,
+      showLoader,
+      addNote,
+      removeNote,
+      fetchNotes,
       loading: state.loading,
       notes: state.notes
     }}>

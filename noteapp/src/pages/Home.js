@@ -9,8 +9,7 @@ export const Home = () => {
 
   useEffect(()=>{
     fetchNotes()
-    // eslint-disable-next-line
-  },[])
+  }, [])
 
   return (
     <Fragment>
@@ -19,8 +18,9 @@ export const Home = () => {
       <hr />
 
       {loading
-      ?<Loader />
-      :<Notes notes={notes} />}
+      ? <Loader />
+      : <Notes notes={notes}/>
+      }
 
       <Notes notes={notes}/>
 

@@ -9,10 +9,14 @@ export const Notes = ({notes}) => {
           className="list-group-item note"
           key={note.id}
         >
-          <strong>
-            {note.title}
-          </strong>
-          <span>{new Date().toLocaleDateString()}</span>
+
+          <div>
+            <strong>
+              {note.title}
+            </strong>
+            <small>{new Date().toLocaleDateString()}</small>
+          </div>
+
           <button
             type="button"
             className="btn btn-outline-danger btn-sm"

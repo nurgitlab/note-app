@@ -5,11 +5,12 @@ import { FirebaseContext } from "../context/firebase/firebaseContext";
 import { Loader } from "../components/Loader";
 
 export const Home = () => {
-  const {loading, notes, fetchNotes} = useContext(FirebaseContext)
+  const {loading, notes, fetchNotes, removeNote} = useContext(FirebaseContext)
 
   useEffect(()=>{
     fetchNotes()
-  }, [])
+    // eslint-disable-next-line
+  },[])
 
   return (
     <Fragment>
@@ -18,9 +19,8 @@ export const Home = () => {
       <hr />
 
       {loading
-      ? <Loader />
-      : <Notes notes={notes}/>
-      }
+      ?<Loader />
+      :<Notes notes={notes} onRemove={removeNote}/>}
 
     </Fragment>
   )

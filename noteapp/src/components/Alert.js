@@ -13,7 +13,7 @@ export const Alert = () => {
       <strong>
         Внимание!
       </strong>
-      {alert.text}
+      &nbsp;{alert.text}
       <button
         onClick={hide}
         type="button"

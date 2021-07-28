@@ -22,8 +22,6 @@ export const Home = () => {
       : <Notes notes={notes}/>
       }
 
-      <Notes notes={notes}/>
-
     </Fragment>
   )
 }

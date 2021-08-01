@@ -9,4 +9,4 @@ export const About = () => (
       </p>
     </div>
   </div>
-)
+);
